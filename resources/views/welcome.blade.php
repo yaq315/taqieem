@@ -105,122 +105,58 @@
           <h2 class="mb-0 text-nowrap mr-3">Our Ratings</h2>
           <div class="border-top w-100 border-primary d-none d-sm-block"></div>
           <div>
-            <a href="/ratings" class="btn btn-sm btn-outline-primary ml-sm-3 d-none d-sm-block">see all</a>
+            <a href="/ratings" class="btn btn-sm btn-outline-primary ml-sm-3 d-none d-sm-block">See all</a>
           </div>
         </div>
       </div>
     </div>
-    <!-- course list -->
-<div class="row justify-content-center">
-  <!-- course item -->
-  <div class="col-lg-4 col-sm-6 mb-5">
-    <div class="card p-0 border-primary rounded-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/courses/course-1.jpg" alt="course thumb">
-      <div class="card-body">
-        <ul class="list-inline mb-2">
-          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
-          <li class="list-inline-item"><a class="text-color" href="/ratings-single">Humanities</a></li>
-        </ul>
-        <a href="/ratings-single">
-          <h4 class="card-title">Photography</h4>
-        </a>
-        <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna.</p>
-        <a href="/ratings-single" class="btn btn-primary btn-sm">Apply now</a>
-      </div>
+
+    <!-- school ratings list -->
+    <div class="row justify-content-center">
+      @foreach($schools as $school)
+        <div class="col-lg-4 col-sm-6 mb-5 d-flex align-items-stretch">
+          <div class="card p-0 border-primary rounded-0 hover-shadow w-100">
+            <div class="card-img-top-container" style="height: 200px; overflow: hidden;">
+              <img class="img-fluid w-100 h-100" src="{{ asset($school->image ?? 'images/courses/course-1.jpg') }}" alt="{{ $school->name }}" style="object-fit: cover;">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h4 class="card-title">{{ $school->name }}</h4>
+              <ul class="list-inline mb-2">
+                <li class="list-inline-item"><i class="ti-location-pin mr-1"></i>{{ $school->location }}</li>
+              </ul>
+              <div class="mb-3">
+                @if($school->ratings_count > 0)
+                  @for($i = 1; $i <= 5; $i++)
+                    @if($i <= round($school->average_rating))
+                      <i class="ti-star text-warning"></i>
+                    @else
+                      <i class="ti-star text-secondary"></i>
+                    @endif
+                  @endfor
+                  <span class="ml-2">{{ number_format($school->average_rating, 1) }} ({{ $school->ratings_count }} reviews)</span>
+                @else
+                  <span class="text-muted">No ratings yet</span>
+                @endif
+              </div>
+              <p class="card-text mb-4 flex-grow-1">{{ Str::limit($school->description, 100) }}</p>
+              <div class="mt-auto">
+                @auth
+                  <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ratingModal{{ $school->id }}">Rate Now</button>
+                @else
+                  <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#loginModal">Rate Now</button>
+                @endauth
+              </div>
+            </div>
+          </div>
+        </div>
+      @endforeach
     </div>
   </div>
-  <!-- course item -->
-  <div class="col-lg-4 col-sm-6 mb-5">
-    <div class="card p-0 border-primary rounded-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/courses/course-2.jpg" alt="course thumb">
-      <div class="card-body">
-        <ul class="list-inline mb-2">
-          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
-          <li class="list-inline-item"><a class="text-color" href="/ratings-single">Humanities</a></li>
-        </ul>
-        <a href="/ratings-single">
-          <h4 class="card-title">Programming</h4>
-        </a>
-        <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna.</p>
-        <a href="/ratings-single" class="btn btn-primary btn-sm">Apply now</a>
-      </div>
-    </div>
-  </div>
-  <!-- course item -->
-  <div class="col-lg-4 col-sm-6 mb-5">
-    <div class="card p-0 border-primary rounded-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/courses/course-3.jpg" alt="course thumb">
-      <div class="card-body">
-        <ul class="list-inline mb-2">
-          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
-          <li class="list-inline-item"><a class="text-color" href="/ratings-single">Humanities</a></li>
-        </ul>
-        <a href="/ratings-single">
-          <h4 class="card-title">Lifestyle Archives</h4>
-        </a>
-        <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna.</p>
-        <a href="/ratings-single" class="btn btn-primary btn-sm">Apply now</a>
-      </div>
-    </div>
-  </div>
-  <!-- course item -->
-  <div class="col-lg-4 col-sm-6 mb-5">
-    <div class="card p-0 border-primary rounded-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/courses/course-4.jpg" alt="course thumb">
-      <div class="card-body">
-        <ul class="list-inline mb-2">
-          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
-          <li class="list-inline-item"><a class="text-color" href=/ratings-single">Humanities</a></li>
-        </ul>
-        <a href="/ratings-single">
-          <h4 class="card-title">Complete Freelancing</h4>
-        </a>
-        <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna.</p>
-        <a href="/ratings-single" class="btn btn-primary btn-sm">Apply now</a>
-      </div>
-    </div>
-  </div>
-  <!-- course item -->
-  <div class="col-lg-4 col-sm-6 mb-5">
-    <div class="card p-0 border-primary rounded-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/courses/course-5.jpg" alt="course thumb">
-      <div class="card-body">
-        <ul class="list-inline mb-2">
-          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
-          <li class="list-inline-item"><a class="text-color" href="/ratings-single">Humanities</a></li>
-        </ul>
-        <a href="/ratings-single">
-          <h4 class="card-title">Branding Design</h4>
-        </a>
-        <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna.</p>
-        <a href="/ratings-single" class="btn btn-primary btn-sm">Apply now</a>
-      </div>
-    </div>
-  </div>
-  <!-- course item -->
-  <div class="col-lg-4 col-sm-6 mb-5">
-    <div class="card p-0 border-primary rounded-0 hover-shadow">
-      <img class="card-img-top rounded-0" src="images/courses/course-6.jpg" alt="course thumb">
-      <div class="card-body">
-        <ul class="list-inline mb-2">
-          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
-          <li class="list-inline-item"><a class="text-color" href="/ratings-single">Humanities</a></li>
-        </ul>
-        <a href="/ratings-single">
-          <h4 class="card-title">Art Design</h4>
-        </a>
-        <p class="card-text mb-4"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna.</p>
-        <a href="/ratings-single" class="btn btn-primary btn-sm">Apply now</a>
-      </div>
-    </div>
-  </div>
-</div>
+</section>
+
+
+
+
 <!-- /course list -->
     <!-- mobile see all button -->
     <div class="row">

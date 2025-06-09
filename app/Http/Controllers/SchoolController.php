@@ -25,4 +25,19 @@ class SchoolController extends Controller
         
         return view('ratings-single', compact('school'));
     }
+
+    public function home()
+{
+    $schools = School::withCount('ratings')
+        ->withAvg('ratings', 'rating')
+        ->orderByDesc('ratings_count')
+        ->take(6)
+        ->get()
+        ->map(function ($school) {
+            $school->average_rating = $school->ratings_avg_rating ?? 0;
+            return $school;
+        });
+
+    return view('welcome', compact('schools'));
+}
 }
