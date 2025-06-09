@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rating extends Model
 {
-    protected $fillable = [
-        'user_id', 'school_id', 'teaching_quality', 
-        'facilities', 'administration', 'safety', 'comment'
-    ];
+  protected $fillable = [
+    'user_id', 'school_id', 'teaching_quality', 
+    'facilities', 'administration', 'safety', 'comment', 'overall_rating'
+];
+
 
     protected $appends = ['overall_rating'];
 
