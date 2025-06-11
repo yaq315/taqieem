@@ -17,7 +17,7 @@ class AuthController extends Controller
             'phone' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'role' => 'required|in:teacher,parent',
+            'role' => 'required|in:manager,parent',
         ]);
 
         User::create([
@@ -47,7 +47,7 @@ public function login(Request $request)
     if (Hash::check($request->password, $user->password)) {
         Auth::login($user);
         
-        if ($user->role == 'teacher') {
+        if ($user->role == 'manager') {
             return redirect('/dashboard');
         }
         return redirect('/ratings');
@@ -62,5 +62,33 @@ public function login(Request $request)
         Auth::logout();
         return redirect('/');
     }
+
+
+    // Display the list of parents
+public function parents()
+{
+    $parents = User::where('role', 'parent')->paginate(10);
+    return view('dashboard.users.parents.index', compact('parents'));
+}
+
+// Show the edit form for a parent
+public function editParent(User $user)
+{
+    return view('dashboard.users.parents.edit', compact('user'));
+}
+
+// Update parent data
+public function updateParent(Request $request, User $user)
+{
+    $request->validate([
+        'name' => 'required',
+        'phone' => 'required|unique:users,phone,' . $user->id,
+        'email' => 'required|email|unique:users,email,' . $user->id,
+    ]);
+
+    $user->update($request->all());
+    return redirect()->route('users.parents')->with('success', 'Parent information updated successfully.');
+}
+
 }
 

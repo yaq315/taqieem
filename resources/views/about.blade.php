@@ -44,7 +44,7 @@
     <!-- /about -->
 
     <!-- funfacts -->
-    <section class="section-sm bg-primary">
+    {{-- <section class="section-sm bg-primary">
         <div class="container">
             <div class="row">
                 <!-- funfacts item -->
@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- /funfacts -->
 
     <!-- success story -->

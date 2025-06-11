@@ -8,6 +8,8 @@ use App\Http\Controllers\RatingController;
 
 use App\Http\Controllers\ContactController;
 
+// use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,3 +58,23 @@ Route::get('/ratings/{school}', [SchoolController::class, 'show'])->name('rating
 
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+
+// Routes for Dashboard
+Route::middleware(['auth', 'role:manager'])->group(function () {
+    // Parents Management (using UserController)
+    Route::get('/parents', [AuthController::class, 'parents'])->name('users.parents');
+    Route::get('/parents/{user}/edit', [AuthController::class, 'editParent'])->name('users.parents.edit');
+    Route::put('/parents/{user}', [AuthController::class, 'updateParent'])->name('users.parents.update');
+    // Schools Management
+    Route::get('/schools/manage', [SchoolController::class, 'manage'])->name('schools.manage');
+    Route::get('/schools/create', [SchoolController::class, 'create'])->name('schools.create');
+    Route::post('/schools', [SchoolController::class, 'store'])->name('schools.store');
+    Route::get('/schools/{school}/edit', [SchoolController::class, 'edit'])->name('schools.edit');
+    Route::put('/schools/{school}', [SchoolController::class, 'update'])->name('schools.update');
+    
+    // Contacts Management
+    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+});
+
+// Existing routes...

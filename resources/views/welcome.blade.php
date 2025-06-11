@@ -97,7 +97,7 @@
 <!-- /about us -->
 
 <!-- courses -->
-<section class="section-sm">
+{{-- <section class="section-sm">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -165,7 +165,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> --}}
 <!-- /courses -->
 
 <!-- cta -->

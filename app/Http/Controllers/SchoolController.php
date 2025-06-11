@@ -40,4 +40,66 @@ class SchoolController extends Controller
 
     return view('welcome', compact('schools'));
 }
+
+
+    public function manage()
+    {
+        $schools = School::paginate(10);
+        return view('dashboard.schools.index', compact('schools'));
+    }
+
+    public function create()
+    {
+        return view('dashboard.schools.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'description' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = $request->all();
+        
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('schools', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        School::create($data);
+        return redirect()->route('schools.manage')->with('success', 'School added successfully');
+    }
+
+    public function edit(School $school)
+    {
+        return view('dashboard.schools.edit', compact('school'));
+    }
+
+    public function update(Request $request, School $school)
+    {
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'description' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = $request->all();
+        
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($school->image) {
+                Storage::disk('public')->delete($school->image);
+            }
+            
+            $imagePath = $request->file('image')->store('schools', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        $school->update($data);
+        return redirect()->route('schools.manage')->with('success', 'School updated successfully');
+    }
 }

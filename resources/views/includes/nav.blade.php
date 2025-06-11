@@ -118,7 +118,7 @@
           <input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
           <select name="role" class="form-control mb-3" required>
             <option value="" disabled {{ old('role') ? '' : 'selected' }}>Select Role</option>
-            <option value="teacher" {{ old('role') == 'teacher' ? 'selected' : '' }}>Teacher</option>
+            <option value="manager" {{ old('role') == 'manager' ? 'selected' : '' }}>manager</option>
             <option value="parent" {{ old('role') == 'parent' ? 'selected' : '' }}>Parent</option>
           </select>
           <button type="submit" class="btn btn-primary w-100">Sign Up</button>
