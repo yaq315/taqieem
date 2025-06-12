@@ -71,6 +71,7 @@ public function parents()
     return view('dashboard.users.parents.index', compact('parents'));
 }
 
+
 // Show the edit form for a parent
 public function editParent(User $user)
 {
@@ -89,6 +90,43 @@ public function updateParent(Request $request, User $user)
     $user->update($request->all());
     return redirect()->route('users.parents')->with('success', 'Parent information updated successfully.');
 }
+
+
+// عرض صفحة البروفايل (كما عندك)
+public function profile()
+{
+    $user = auth()->user();
+    return view('dashboard.profile.show', compact('user'));
+}
+
+// عرض صفحة التعديل مع بيانات المستخدم
+public function editProfile()
+{
+    $user = auth()->user();
+    return view('dashboard.profile.edit', compact('user'));
+}
+
+// تحديث بيانات المستخدم بعد التحقق من الصحة
+public function updateProfile(Request $request)
+{
+    $user = auth()->user();
+
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+        // ممكن تضيف فحص لباقي الحقول لو حبيت
+    ]);
+
+    $user->update([
+        'name' => $request->name,
+        'email' => $request->email,
+    ]);
+
+    return redirect()->route('profile.show')->with('success', 'Profile updated successfully!');
+}
+
+
+
 
 }
 

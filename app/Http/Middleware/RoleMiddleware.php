@@ -1,38 +1,20 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */    public function handle(Request $request, Closure $next, $role): Response
-    {
-
-    // return response('Unauthorized - Role not recognized', 403);}
+    public function handle(Request $request, Closure $next, $role)
+{
     if (!Auth::check()) {
-        return response('Unauthorized - You are not logged in', 401);
+        return redirect('/login'); // توجيه لتسجيل الدخول بدلاً من 403
     }
-
-    $userRole = Auth::user()->role; 
-
-    
-    $currentRoute = $request->path();
-
-    if ($userRole === 'user' && $currentRoute !== 'welcome') {
-        return redirect('/');
-    }
-
-    if (($userRole === 'admin' || $userRole === 'super_admin') && $currentRoute !== 'dashboard') {
-        return $next($request);
-    }
-
-    return $next($request);}
+if (Auth::user()->role !== $role) {
+    return response()->view('errors.403', [], 403); // تأكد من وجود view باسم `403.blade.php`
+}
+    return $next($request);
+}
 }

@@ -23,7 +23,7 @@
                 <!-- Dashboard Sections -->
                 <!-- ---------------------------------- -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('parents.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('users.parents') }}" aria-expanded="false">
                         <div class="d-flex align-items-center gap-3">
                             <span class="d-flex">
                                 <i class="ti ti-users"></i>
@@ -98,19 +98,21 @@
                 </li>
                 
                 <!-- Logout -->
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <div class="d-flex align-items-center gap-3">
-                            <span class="d-flex">
-                                <i class="ti ti-logout"></i>
-                            </span>
-                            <span class="hide-menu">Logout</span>
-                        </div>
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
+             <li class="sidebar-item">
+ <a href="#" class="sidebar-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+  <div class="d-flex align-items-center gap-3">
+    <span class="d-flex"><i class="ti ti-logout"></i></span>
+    <span class="hide-menu">Logout</span>
+  </div>
+</a>
+
+<form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
+  @csrf
+</form>
+
+</li>
+
+
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

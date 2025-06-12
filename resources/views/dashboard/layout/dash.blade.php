@@ -1,486 +1,265 @@
 @extends('dashboard.dashboard')
 @section('contact')
       
-      <div class="body-wrapper-inner">
-        <div class="container-fluid">
-          <!--  Row 1 -->
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="card w-100">
-                <div class="card-body">
-                  <div class="d-md-flex align-items-center">
-                    <div>
-                      <h4 class="card-title">Sales Overview</h4>
-                      <p class="card-subtitle">
-                        Ample admin Vs Pixel admin
-                      </p>
-                    </div>
-                    <div class="ms-auto">
-                      <ul class="list-unstyled mb-0">
-                        <li class="list-inline-item text-primary">
-                          <span class="round-8 text-bg-primary rounded-circle me-1 d-inline-block"></span>
-                          Ample
-                        </li>
-                        <li class="list-inline-item text-info">
-                          <span class="round-8 text-bg-info rounded-circle me-1 d-inline-block"></span>
-                          Pixel Admin
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div id="sales-overview" class="mt-4 mx-n6"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="card overflow-hidden">
-                <div class="card-body pb-0">
-                  <div class="d-flex align-items-start">
-                    <div>
-                      <h4 class="card-title">Weekly Stats</h4>
-                      <p class="card-subtitle">Average sales</p>
-                    </div>
-                    <div class="ms-auto">
-                      <div class="dropdown">
-                        <a href="javascript:void(0)" class="text-muted" id="year1-dropdown" data-bs-toggle="dropdown"
-                          aria-expanded="false">
-                          <i class="ti ti-dots fs-7"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="year1-dropdown">
-                          <li>
-                            <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mt-4 pb-3 d-flex align-items-center">
-                    <span class="btn btn-primary rounded-circle round-48 hstack justify-content-center">
-                      <i class="ti ti-shopping-cart fs-6"></i>
-                    </span>
-                    <div class="ms-3">
-                      <h5 class="mb-0 fw-bolder fs-4">Top Sales</h5>
-                      <span class="text-muted fs-3">Johnathan Doe</span>
-                    </div>
-                    <div class="ms-auto">
-                      <span class="badge bg-secondary-subtle text-muted">+68%</span>
-                    </div>
-                  </div>
-                  <div class="py-3 d-flex align-items-center">
-                    <span class="btn btn-warning rounded-circle round-48 hstack justify-content-center">
-                      <i class="ti ti-star fs-6"></i>
-                    </span>
-                    <div class="ms-3">
-                      <h5 class="mb-0 fw-bolder fs-4">Best Seller</h5>
-                      <span class="text-muted fs-3">MaterialPro Admin</span>
-                    </div>
-                    <div class="ms-auto">
-                      <span class="badge bg-secondary-subtle text-muted">+68%</span>
-                    </div>
-                  </div>
-                  <div class="py-3 d-flex align-items-center">
-                    <span class="btn btn-success rounded-circle round-48 hstack justify-content-center">
-                      <i class="ti ti-message-dots fs-6"></i>
-                    </span>
-                    <div class="ms-3">
-                      <h5 class="mb-0 fw-bolder fs-4">Most Commented</h5>
-                      <span class="text-muted fs-3">Ample Admin</span>
-                    </div>
-                    <div class="ms-auto">
-                      <span class="badge bg-secondary-subtle text-muted">+68%</span>
-                    </div>
-                  </div>
-                  <div class="pt-3 mb-7 d-flex align-items-center">
-                    <span class="btn btn-secondary rounded-circle round-48 hstack justify-content-center">
-                      <i class="ti ti-diamond fs-6"></i>
-                    </span>
-                    <div class="ms-3">
-                      <h5 class="mb-0 fw-bolder fs-4">Top Budgets</h5>
-                      <span class="text-muted fs-3">Sunil Joshi</span>
-                    </div>
-                    <div class="ms-auto">
-                      <span class="badge bg-secondary-subtle text-muted">+15%</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-md-flex align-items-center">
-                    <div>
-                      <h4 class="card-title">Products Performance</h4>
-                      <p class="card-subtitle">
-                        Ample Admin Vs Pixel Admin
-                      </p>
-                    </div>
-                    <div class="ms-auto mt-3 mt-md-0">
-                      <select class="form-select theme-select border-0" aria-label="Default select example">
-                        <option value="1">March 2025</option>
-                        <option value="2">March 2025</option>
-                        <option value="3">March 2025</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="table-responsive mt-4">
-                    <table class="table mb-0 text-nowrap varient-table align-middle fs-3">
-                      <thead>
-                        <tr>
-                          <th scope="col" class="px-0 text-muted">
-                            Assigned
-                          </th>
-                          <th scope="col" class="px-0 text-muted">Name</th>
-                          <th scope="col" class="px-0 text-muted">
-                            Priority
-                          </th>
-                          <th scope="col" class="px-0 text-muted text-end">
-                            Budget
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="px-0">
-                            <div class="d-flex align-items-center">
-                              <img src="./assets/images/profile/user-3.jpg" class="rounded-circle" width="40"
-                                alt="flexy" />
-                              <div class="ms-3">
-                                <h6 class="mb-0 fw-bolder">Sunil Joshi</h6>
-                                <span class="text-muted">Web Designer</span>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="px-0">Elite Admin</td>
-                          <td class="px-0">
-                            <span class="badge bg-info">Low</span>
-                          </td>
-                          <td class="px-0 text-dark fw-medium text-end">
-                            $3.9K
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="px-0">
-                            <div class="d-flex align-items-center">
-                              <img src="./assets/images/profile/user-5.jpg" class="rounded-circle" width="40"
-                                alt="flexy" />
-                              <div class="ms-3">
-                                <h6 class="mb-0 fw-bolder">
-                                  Andrew McDownland
-                                </h6>
-                                <span class="text-muted">Project Manager</span>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="px-0">Real Homes WP Theme</td>
-                          <td class="px-0">
-                            <span class="badge text-bg-primary">Medium</span>
-                          </td>
-                          <td class="px-0 text-dark fw-medium text-end">
-                            $24.5K
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="px-0">
-                            <div class="d-flex align-items-center">
-                              <img src="./assets/images/profile/user-6.jpg" class="rounded-circle" width="40"
-                                alt="flexy" />
-                              <div class="ms-3">
-                                <h6 class="mb-0 fw-bolder">
-                                  Christopher Jamil
-                                </h6>
-                                <span class="text-muted">SEO Manager</span>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="px-0">MedicalPro WP Theme</td>
-                          <td class="px-0">
-                            <span class="badge bg-warning">Hight</span>
-                          </td>
-                          <td class="px-0 text-dark fw-medium text-end">
-                            $12.8K
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="px-0">
-                            <div class="d-flex align-items-center">
-                              <img src="./assets/images/profile/user-7.jpg" class="rounded-circle" width="40"
-                                alt="flexy" />
-                              <div class="ms-3">
-                                <h6 class="mb-0 fw-bolder">Nirav Joshi</h6>
-                                <span class="text-muted">Frontend Engineer</span>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="px-0">Hosting Press HTML</td>
-                          <td class="px-0">
-                            <span class="badge bg-danger">Low</span>
-                          </td>
-                          <td class="px-0 text-dark fw-medium text-end">
-                            $2.4K
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="px-0">
-                            <div class="d-flex align-items-center">
-                              <img src="./assets/images/profile/user-8.jpg" class="rounded-circle" width="40"
-                                alt="flexy" />
-                              <div class="ms-3">
-                                <h6 class="mb-0 fw-bolder">Micheal Doe</h6>
-                                <span class="text-muted">Content Writer</span>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="px-0">Helping Hands WP Theme</td>
-                          <td class="px-0">
-                            <span class="badge bg-success">Low</span>
-                          </td>
-                          <td class="px-0 text-dark fw-medium text-end">
-                            $9.3K
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+     <div class="body-wrapper-inner">
+    <div class="container-fluid">
+        <!-- Row 1 -->
+        <div class="row">
+            <!-- Chart Column -->
             <div class="col-lg-6">
-              <!-- Card -->
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title mb-0">Recent Comments</h4>
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-md-flex align-items-center">
+                            <div>
+                                <h4 class="card-title">Top Rated Schools</h4>
+                                <p class="card-subtitle">Schools with the highest ratings by parents</p>
+                            </div>
+                        </div>
+                        <div id="top-schools-chart" class="mt-2" style="height: 300px;"></div>
+                    </div>
                 </div>
-                <div class="comment-widgets scrollable mb-2 common-widget" style="height: 465px" data-simplebar="">
-                  <!-- Comment Row -->
-                  <div class="d-flex flex-row comment-row border-bottom p-3 gap-3">
-                    <div>
-                      <span><img src="./assets/images/profile/user-3.jpg" class="rounded-circle" alt="user"
-                          width="50" /></span>
-                    </div>
-                    <div class="comment-text w-100">
-                      <h6 class="fw-medium">James Anderson</h6>
-                      <p class="mb-1 fs-2 text-muted">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        type etting industry
-                      </p>
-                      <div class="comment-footer mt-2">
-                        <div class="d-flex align-items-center">
-                          <span class="
-                              badge
-                              bg-info-subtle
-                              text-info
-                              
-                            ">Pending</span>
-                          <span class="action-icons">
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-edit fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-check fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-heart fs-5"></i></a>
-                          </span>
-                        </div>
-                        <span class="
-                            text-muted
-                            ms-auto
-                            fw-normal
-                            fs-2
-                            d-block
-                            mt-2
-                            text-end
-                          ">April 14, 2025</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Comment Row -->
-                  <div class="d-flex flex-row comment-row border-bottom active p-3 gap-3">
-                    <div>
-                      <span><img src="./assets/images/profile/user-5.jpg" class="rounded-circle" alt="user"
-                          width="50" /></span>
-                    </div>
-                    <div class="comment-text active w-100">
-                      <h6 class="fw-medium">Michael Jorden</h6>
-                      <p class="mb-1 fs-2 text-muted">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        type setting industry.
-                      </p>
-                      <div class="comment-footer mt-2">
-                        <div class="d-flex align-items-center">
-                          <span class="
-                              badge
-                              bg-success-subtle
-                              text-success
-                              
-                            ">Approved</span>
-                          <span class="action-icons active">
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-edit fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-circle-x fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-heart text-danger fs-5"></i></a>
-                          </span>
-                        </div>
-                        <span class="
-                            text-muted
-                            ms-auto
-                            fw-normal
-                            fs-2
-                            text-end
-                            mt-2
-                            d-block
-                          ">April 14, 2025</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Comment Row -->
-                  <div class="d-flex flex-row comment-row border-bottom p-3 gap-3">
-                    <div>
-                      <span><img src="./assets/images/profile/user-6.jpg" class="rounded-circle" alt="user"
-                          width="50" /></span>
-                    </div>
-                    <div class="comment-text w-100">
-                      <h6 class="fw-medium">Johnathan Doeting</h6>
-                      <p class="mb-1 fs-2 text-muted">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        type setting industry.
-                      </p>
-                      <div class="comment-footer mt-2">
-                        <div class="d-flex align-items-center">
-                          <span class="
-                              badge
-                              bg-danger-subtle
-                              text-danger
-                              
-                            ">Rejected</span>
-                          <span class="action-icons">
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-edit fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-check fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-heart fs-5"></i></a>
-                          </span>
-                        </div>
-                        <span class="
-                            text-muted
-                            ms-auto
-                            fw-normal
-                            fs-2
-                            d-block
-                            mt-2
-                            text-end
-                          ">April 14, 2025</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Comment Row -->
-                  <div class="d-flex flex-row comment-row p-3 gap-3">
-                    <div>
-                      <span><img src="./assets/images/profile/user-4.jpg" class="rounded-circle" alt="user"
-                          width="50" /></span>
-                    </div>
-                    <div class="comment-text w-100">
-                      <h6 class="fw-medium">James Anderson</h6>
-                      <p class="mb-1 fs-2 text-muted">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        type setting industry.
-                      </p>
-                      <div class="comment-footer mt-2">
-                        <div class="d-flex align-items-center">
-                          <span class="
-                              badge
-                              bg-info-subtle
-                              text-info
-                              
-                            ">Pending</span>
-                          <span class="action-icons">
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-edit fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-check fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-heart fs-5"></i></a>
-                          </span>
-                        </div>
-                        <span class="
-                            text-muted
-                            ms-auto
-                            fw-normal
-                            fs-2
-                            d-block
-                            text-end
-                            mt-2
-                          ">April 14, 2025</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
+
+            <!-- Table Column -->
             <div class="col-lg-6">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <h4 class="card-title mb-0">Weather Report</h4>
-                    <select class="form-select w-auto ms-auto">
-                      <option selected="">Today</option>
-                      <option value="1">Weekly</option>
-                    </select>
-                  </div>
-                  <div class="d-flex align-items-center flex-row mt-4">
-                    <div class="p-2 display-5 text-primary">
-                      <i class="ti ti-cloud-snow"></i>
-                      <span>73<sup>°</sup></span>
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="card-title">Schools List</h4>
+                            <form method="GET" action="{{ route('dashboard.index') }}" class="w-50">
+                                
+                            </form>
+                        </div>
+                        <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
+                            <table class="table table-striped table-hover">
+                                <thead class="sticky-top">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>School Name</th>
+                                        <th>Rating</th>
+                                        <th>Reviews</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($schools as $index => $school)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $school->name }}</td>
+                                        <td>
+                                            @if($school->avg_rating)
+                                                <div class="d-flex align-items-center">
+                                                    <div class="me-2">
+                                                        @for($i = 1; $i <= 5; $i++)
+                                                            @if($i <= $school->avg_rating)
+                                                                <i class="ti ti-star-filled text-warning" style="font-size: 0.9rem;"></i>
+                                                            @elseif($i - 0.5 <= $school->avg_rating)
+                                                                <i class="ti ti-star-half-filled text-warning" style="font-size: 0.9rem;"></i>
+                                                            @else
+                                                                <i class="ti ti-star text-warning" style="font-size: 0.9rem;"></i>
+                                                            @endif
+                                                        @endfor
+                                                    </div>
+                                                    <span>{{ number_format($school->avg_rating, 1) }}</span>
+                                                </div>
+                                            @else
+                                                <span class="badge bg-secondary">No ratings</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $school->ratings_count }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                       
                     </div>
-                    <div class="p-2">
-                      <h3 class="mb-0">Saturday</h3>
-                      <small>Ahmedabad, India</small>
-                    </div>
-                  </div>
-                  <table class="table table-borderless">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+          <div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-md-flex align-items-center">
+                <div>
+                    <h4 class="card-title">Parents Management</h4>
+                    <p class="card-subtitle">
+                        List of registered parents
+                    </p>
+                </div>
+                <div class="ms-auto mt-3 mt-md-0">
+                    <form method="GET" action="{{ route('dashboard.index') }}" class="d-flex">
+                      
+                    </form>
+                </div>
+            </div>
+            <div class="table-responsive mt-4">
+                <table class="table mb-0 text-nowrap varient-table align-middle fs-3">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="px-0 text-muted">#</th>
+                            <th scope="col" class="px-0 text-muted">Parent Name</th>
+                            <th scope="col" class="px-0 text-muted">Contact Info</th>
+                            <th scope="col" class="px-0 text-muted text-end">Actions</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                      <tr>
-                        <td>Wind</td>
-                        <td class="fw-medium">ESE 17 mph</td>
-                      </tr>
-                      <tr>
-                        <td>Humidity</td>
-                        <td class="fw-medium">83%</td>
-                      </tr>
-                      <tr>
-                        <td>Pressure</td>
-                        <td class="fw-medium">28.56 in</td>
-                      </tr>
-                      <tr>
-                        <td>Cloud Cover</td>
-                        <td class="fw-medium">78%</td>
-                      </tr>
-                      <tr>
-                        <td>Ceiling</td>
-                        <td class="fw-medium">25760 ft</td>
-                      </tr>
+                        @foreach($parents as $parent)
+                        <tr>
+                            <td class="px-0">{{ $loop->iteration }}</td>
+                            <td class="px-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar avatar-md bg-light rounded-circle text-dark d-flex align-items-center justify-content-center">
+                                        {{ substr($parent->name, 0, 1) }}
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 fw-bolder">{{ $parent->name }}</h6>
+                                   
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-0">
+                                <div>
+                                    <span class="d-block">{{ $parent->phone }}</span>
+                                    <span class="text-muted">{{ $parent->email }}</span>
+                                </div>
+                            </td>
+                            <td class="px-0 text-end">
+                                <div class="d-flex justify-content-end">
+                                    <a href="{{ route('users.parents.edit', $parent->id) }}" 
+                                       class="btn btn-sm btn-primary me-2">
+                                        <i class="ti ti-edit"></i> Edit
+                                    </a>
+                                   
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
-                  </table>
-                  <hr />
-                  <ul class="list-unstyled row text-center city-weather-days mb-0">
-                    <li class="col">
-                      <i class="ti ti-sun-high fs-4"></i><span>09:30</span>
-                      <h3 class="mb-0 fs-6 lh-base">70<sup>°</sup></h3>
-                    </li>
-                    <li class="col">
-                      <i class="ti ti-cloud fs-4"></i><span>11:30</span>
-                      <h3 class="mb-0 fs-6 lh-base">72<sup>°</sup></h3>
-                    </li>
-                    <li class="col">
-                      <i class="ti ti-cloud-rain fs-4"></i><span>13:30</span>
-                      <h3 class="mb-0 fs-6 lh-base">75<sup>°</sup></h3>
-                    </li>
-                    <li class="col">
-                      <i class="ti ti-cloud-snow fs-4"></i><span>15:30</span>
-                      <h3 class="mb-0 fs-6 lh-base">76<sup>°</sup></h3>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+                </table>
             </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Contact Messages</h5>
+
+            <div class="ms-auto mt-3 mt-md-0">
+                    <form method="GET" action="{{ route('dashboard.index') }}" class="d-flex">
+                      
+                    </form>
+                </div>
+            <div class="table-responsive">
+                <table class="table text-nowrap mb-0 align-middle">
+                    <thead class="text-dark fs-4">
+                        <tr>
+                            <th class="border-bottom-0">#</th>
+                            <th class="border-bottom-0">Name</th>
+                            <th class="border-bottom-0">Email</th>
+                            <th class="border-bottom-0">Subject</th>
+                            <th class="border-bottom-0">Sent Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($contacts as $contact)
+                        <tr>
+                            <td class="border-bottom-0">{{ $loop->iteration }}</td>
+                            <td class="border-bottom-0">{{ $contact->name }}</td>
+                            <td class="border-bottom-0">{{ $contact->mail }}</td>
+                            <td class="border-bottom-0">{{ $contact->subject }}</td>
+                            <td class="border-bottom-0">{{ $contact->created_at->format('Y-m-d') }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-3">
+                {{ $contacts->links() }} {{-- للصفحات --}}
+            </div>
+        </div>
+    </div>
+</div>
+            
           </div>
 
         </div>
       </div>
-      @endsection
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Top schools data
+  const topSchoolsData = {
+    schools: @json($topSchools->pluck('name')),
+    ratings: @json($topSchools->pluck('avg_rating')),
+    reviews: @json($topSchools->pluck('ratings_count'))
+  };
+
+  // Chart options
+  const chartOptions = {
+    series: [{
+      name: 'Average Rating',
+      data: topSchoolsData.ratings
+    }, {
+      name: 'Number of Ratings',
+      data: topSchoolsData.reviews
+    }],
+    chart: {
+      type: 'bar',
+      height: 350,
+      toolbar: { show: false }
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false,
+        columnWidth: '55%',
+        endingShape: 'rounded'
+      },
+    },
+    dataLabels: {
+      enabled: false
+    },
+    colors: ['#5D87FF', '#13DEB9'],
+    xaxis: {
+      categories: topSchoolsData.schools,
+    },
+    yaxis: {
+      title: {
+        text: 'Value'
+      }
+    },
+    tooltip: {
+      y: {
+        formatter: function (val) {
+          return val.toFixed(1);
+        }
+      }
+    },
+    legend: {
+      position: 'top'
+    }
+  };
+
+  const chart = new ApexCharts(document.querySelector("#top-schools-chart"), chartOptions);
+  chart.render();
+});
+</script>
+
+<style>
+    .avatar {
+        width: 40px;
+        height: 40px;
+        font-weight: 600;
+    }
+    .table tbody tr td {
+        vertical-align: middle;
+    }
+    .delete-form {
+        display: inline;
+    }
+</style>
+@endsection

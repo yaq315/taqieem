@@ -8,6 +8,8 @@ use App\Http\Controllers\RatingController;
 
 use App\Http\Controllers\ContactController;
 
+use App\Http\Controllers\DashboardController;
+
 // use App\Http\Controllers\UserController;
 
 /*
@@ -39,18 +41,19 @@ Route::get('/notice', function () {
 Route::get('/ratings-single', function () {
     return view('ratings-single');
 });
-Route::get('/dashboard', function () {
-    return view('dashboard.layout.dash');
-})->middleware('auth');
+// Route::get('/dashboard', function () {
+//     return view('dashboard.layout.dash');
+// })->middleware('auth');
 
 
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::resource('schools', SchoolController::class)->only(['index', 'show']);
+
+// Route::resource('schools', SchoolController::class)->only(['index', 'show']);
 Route::resource('schools.ratings', RatingController::class)->only(['store'])->middleware('auth');
 
 Route::get('/ratings', [SchoolController::class, 'index']);
@@ -61,13 +64,16 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 
 
 // Routes for Dashboard
-Route::middleware(['auth', 'role:manager'])->group(function () {
+Route::middleware(['auth', 'role:manager'])->group(function (){
+       Route::get('/profile', [AuthController::class, 'profile'])->name('profile.show');
+         Route::get('/profile/edit', [AuthController::class, 'editProfile'])->name('profile.edit');
+    Route::put('/profile', [AuthController::class, 'updateProfile'])->name('profile.update');
     // Parents Management (using UserController)
     Route::get('/parents', [AuthController::class, 'parents'])->name('users.parents');
     Route::get('/parents/{user}/edit', [AuthController::class, 'editParent'])->name('users.parents.edit');
     Route::put('/parents/{user}', [AuthController::class, 'updateParent'])->name('users.parents.update');
     // Schools Management
-    Route::get('/schools/manage', [SchoolController::class, 'manage'])->name('schools.manage');
+      Route::get('/schools/manage', [SchoolController::class, 'manage'])->name('schools.manage');
     Route::get('/schools/create', [SchoolController::class, 'create'])->name('schools.create');
     Route::post('/schools', [SchoolController::class, 'store'])->name('schools.store');
     Route::get('/schools/{school}/edit', [SchoolController::class, 'edit'])->name('schools.edit');
@@ -77,4 +83,8 @@ Route::middleware(['auth', 'role:manager'])->group(function () {
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
 });
 
-// Existing routes...
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index')->middleware('auth');
+
+
