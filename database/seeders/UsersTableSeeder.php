@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
 
                 'name' => 'leen',
                 'phone' => '0790000000',
-                'email' => 'leen@taqieem.com',
+                'email' => 'Managerleen@taqieem.com',
                 'password' => Hash::make('123456789'),
                 'role' => 'manager',
             ],
@@ -53,14 +53,14 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'rawan',
                 'phone' => '0793333333',
-                'email' => 'rawan@taqieem.com',
+                'email' => 'Managerrawan@taqieem.com',
                 'password' => Hash::make('123456789'),
                 'role' => 'manager',
             ],
             [
                 'name' => 'saba',
                 'phone' => '0794444444',
-                'email' => 'saba@taqieem.com',
+                'email' => 'Managersaba@taqieem.com',
                 'password' => Hash::make('123456789'),
                 'role' => 'manager',
             ],
