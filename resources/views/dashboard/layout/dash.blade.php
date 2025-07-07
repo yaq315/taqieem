@@ -253,14 +253,14 @@ document.addEventListener('DOMContentLoaded', function() {
   // Top schools data
   const topSchoolsData = {
     schools: @json($topSchools->pluck('name')),
-    ratings: @json($topSchools->pluck('avg_rating')),
+    ratings: @json($topSchools->pluck('overall_rating')),
     reviews: @json($topSchools->pluck('ratings_count'))
   };
 
   // Chart options
   const chartOptions = {
     series: [{
-      name: 'Average Rating',
+      name: 'Overall Rating',
       data: topSchoolsData.ratings
     }, {
       name: 'Number of Ratings',
