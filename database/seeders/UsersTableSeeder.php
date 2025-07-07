@@ -19,7 +19,17 @@ class UsersTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $users = [
+
             [
+    'name' => 'Admin User',
+    'phone' => '0780000000',
+    'email' => 'admin@taqieem.com',
+    'password' => Hash::make('123456789'),
+    'role' => 'admin',
+],
+
+            [
+
                 'name' => 'leen',
                 'phone' => '0790000000',
                 'email' => 'leen@taqieem.com',

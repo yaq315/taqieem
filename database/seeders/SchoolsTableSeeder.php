@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\School;
 
+use App\Models\Rating;
+
 class SchoolsTableSeeder extends Seeder
 {
     /**
@@ -99,10 +101,29 @@ class SchoolsTableSeeder extends Seeder
             'image' => 'images/courses/course-2.jpg'
         ]
     ];
+   foreach ($schools as $schoolData) {
+            School::create($schoolData);
+        }
 
+        // بعد إنشاء جميع التقييمات (سيتم تنفيذ RatingsTableSeeder لاحقاً)
+        // نحدّث overall_rating لكل مدرسة بناءً على التقييمات الفعلية
+        $this->updateSchoolsOverallRating();
+    }
+
+protected function updateSchoolsOverallRating()
+{
+    $schools = School::all();
+    
     foreach ($schools as $school) {
-        School::create($school);
+        $avgRating = Rating::where('school_id', $school->id)
+            ->avg('overall_rating');
+        
+        $school->update([
+            'overall_rating' => $avgRating ? round($avgRating, 1) : 0
+        ]);
     }
 }
 
 }
+
+

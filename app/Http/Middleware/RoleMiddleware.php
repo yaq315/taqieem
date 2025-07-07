@@ -7,14 +7,17 @@ use Illuminate\Support\Facades\Auth;
 
 class RoleMiddleware
 {
-    public function handle(Request $request, Closure $next, $role)
-{
-    if (!Auth::check()) {
-        return redirect('/login'); // توجيه لتسجيل الدخول بدلاً من 403
+    public function handle(Request $request, Closure $next, ...$roles)
+    {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
+
+        // if (!in_array(Auth::user()->role, $roles)) {
+        //     return response()->view('errors.403', [], 403);
+        // }
+
+        return $next($request);
     }
-if (Auth::user()->role !== $role) {
-    return response()->view('errors.403', [], 403); // تأكد من وجود view باسم `403.blade.php`
 }
-    return $next($request);
-}
-}
+

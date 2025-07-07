@@ -85,6 +85,18 @@ Route::middleware(['auth', 'role:manager'])->group(function (){
 
 
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index')->middleware('auth');
+Route::middleware(['auth', 'role:admin,manager'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+});
 
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
+        Route::get('/managers/create', [AuthController::class, 'createManager'])->name('users.managers.create');
+    Route::post('/managers', [AuthController::class, 'storeManager'])->name('users.managers.store');
+    Route::get('/managers/{user}/edit', [AuthController::class, 'editManager'])->name('users.managers.edit');
+    Route::put('/managers/{user}', [AuthController::class, 'updateManager'])->name('users.managers.update');
+});
+
+
+
+Route::get('/managers', [AuthController::class, 'managers'])->name('users.managers');

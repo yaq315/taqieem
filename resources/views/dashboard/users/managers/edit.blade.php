@@ -61,7 +61,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title fw-semibold mb-4">Edit Parent</h5>
-            <form method="POST" action="{{ route('users.parents.update', $user->id) }}">
+           <form method="POST" action="{{ route('users.managers.update', $user->id) }}">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">

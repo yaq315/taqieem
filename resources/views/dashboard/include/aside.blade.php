@@ -32,6 +32,18 @@
                         </div>
                     </a>
                 </li>
+
+
+                  <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('users.managers') }}" aria-expanded="false">
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="d-flex">
+                                <i class="ti ti-users"></i>
+                            </span>
+                            <span class="hide-menu">managers</span>
+                        </div>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('schools.manage') }}" aria-expanded="false">
                         <div class="d-flex align-items-center gap-3">

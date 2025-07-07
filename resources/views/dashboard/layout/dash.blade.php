@@ -4,78 +4,76 @@
      <div class="body-wrapper-inner">
     <div class="container-fluid">
         <!-- Row 1 -->
-        <div class="row">
-            <!-- Chart Column -->
-            <div class="col-lg-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="d-md-flex align-items-center">
-                            <div>
-                                <h4 class="card-title">Top Rated Schools</h4>
-                                <p class="card-subtitle">Schools with the highest ratings by parents</p>
-                            </div>
-                        </div>
-                        <div id="top-schools-chart" class="mt-2" style="height: 300px;"></div>
+      <div class="row">
+    <!-- Chart Column -->
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="d-md-flex align-items-center">
+                    <div>
+                        <h4 class="card-title">Top Rated Schools</h4>
+                        <p class="card-subtitle">Schools with the highest ratings by parents</p>
                     </div>
                 </div>
+                <div id="top-schools-chart" class="mt-2" style="height: 300px;"></div>
             </div>
+        </div>
+    </div>
 
-            <!-- Table Column -->
-            <div class="col-lg-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="card-title">Schools List</h4>
-                            <form method="GET" action="{{ route('dashboard.index') }}" class="w-50">
-                                
-                            </form>
-                        </div>
-                        <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
-                            <table class="table table-striped table-hover">
-                                <thead class="sticky-top">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>School Name</th>
-                                        <th>Rating</th>
-                                        <th>Reviews</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($schools as $index => $school)
-                                    <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $school->name }}</td>
-                                        <td>
-                                            @if($school->avg_rating)
-                                                <div class="d-flex align-items-center">
-                                                    <div class="me-2">
-                                                        @for($i = 1; $i <= 5; $i++)
-                                                            @if($i <= $school->avg_rating)
-                                                                <i class="ti ti-star-filled text-warning" style="font-size: 0.9rem;"></i>
-                                                            @elseif($i - 0.5 <= $school->avg_rating)
-                                                                <i class="ti ti-star-half-filled text-warning" style="font-size: 0.9rem;"></i>
-                                                            @else
-                                                                <i class="ti ti-star text-warning" style="font-size: 0.9rem;"></i>
-                                                            @endif
-                                                        @endfor
-                                                    </div>
-                                                    <span>{{ number_format($school->avg_rating, 1) }}</span>
-                                                </div>
-                                            @else
-                                                <span class="badge bg-secondary">No ratings</span>
-                                            @endif
-                                        </td>
-                                        <td>{{ $school->ratings_count }}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                       
-                    </div>
+    <!-- Table Column -->
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title">Schools List</h4>
+                    <form method="GET" action="{{ route('dashboard.index') }}" class="w-50">
+                    </form>
+                </div>
+                <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
+                    <table class="table table-striped table-hover">
+                        <thead class="sticky-top">
+                            <tr>
+                                <th>#</th>
+                                <th>School Name</th>
+                                <th>Rating</th>
+                                <th>Reviews</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($schools as $index => $school)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $school->name }}</td>
+                                <td>
+                                    @if($school->overall_rating) {{-- تغيير من avg_rating إلى overall_rating --}}
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-2">
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    @if($i <= $school->overall_rating)
+                                                        <i class="ti ti-star-filled text-warning" style="font-size: 0.9rem;"></i>
+                                                    @elseif($i - 0.5 <= $school->overall_rating)
+                                                        <i class="ti ti-star-half-filled text-warning" style="font-size: 0.9rem;"></i>
+                                                    @else
+                                                        <i class="ti ti-star text-warning" style="font-size: 0.9rem;"></i>
+                                                    @endif
+                                                @endfor
+                                            </div>
+                                            <span>{{ number_format($school->overall_rating, 1) }}</span> {{-- تغيير من avg_rating إلى overall_rating --}}
+                                        </div>
+                                    @else
+                                        <span class="badge bg-secondary">No ratings</span>
+                                    @endif
+                                </td>
+                                <td>{{ $school->ratings_count }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
+</div>
     </div>
 </div>
 
@@ -144,6 +142,66 @@
         </div>
     </div>
 </div>
+
+
+@can('admin-only')
+
+
+<div class="container-fluid">
+    <div class="card mt-5">
+        <div class="card-body">
+            <h4 class="card-title">Managers Management</h4>
+            <p class="card-subtitle">List of registered managers</p>
+            <div class="table-responsive mt-4">
+
+                 <div class="d-flex justify-content-end mb-3">
+        <a href="{{ route('users.managers.create') }}" class="btn btn-success">Add New Manager</a>
+    </div>
+                <table class="table mb-0 text-nowrap varient-table align-middle fs-3">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Manager Name</th>
+                            <th>Contact Info</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($managers as $manager)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar avatar-md bg-light rounded-circle text-dark d-flex align-items-center justify-content-center">
+                                        {{ substr($manager->name, 0, 1) }}
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 fw-bolder">{{ $manager->name }}</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <span class="d-block">{{ $manager->phone }}</span>
+                                    <span class="text-muted">{{ $manager->email }}</span>
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <a href="{{ route('users.managers.edit', $manager->id) }}" 
+                                   class="btn btn-sm btn-primary me-2">
+                                    <i class="ti ti-edit"></i> Edit
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@endcan
+
 
 <div class="container-fluid">
     <div class="card">

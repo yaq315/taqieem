@@ -51,14 +51,36 @@ class RatingsTableSeeder extends Seeder
                     'facilities' => $facilities,
                     'administration' => $administration,
                     'safety' => $safety,
-                    'overall_rating' => $overall_rating, // تم تغيير هذا من 'rating' إلى 'overall_rating'
+                    'overall_rating' => $overall_rating,
                     'comment' => $comments[array_rand($comments)],
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
             }
+
+            
         }
 
+        
+
         $this->command->info('Ratings seeded successfully!');
+        $this->updateSchoolsOverallRating();
+
     }
+
+
+    protected function updateSchoolsOverallRating()
+{
+    $schools = School::all();
+
+    foreach ($schools as $school) {
+        $avgRating = \App\Models\Rating::where('school_id', $school->id)
+            ->avg('overall_rating');
+
+        $school->update([
+            'overall_rating' => $avgRating ? round($avgRating, 1) : 0
+        ]);
+    }
+}
+
 }

@@ -1,8 +1,7 @@
-{{-- @extends('dashboard.dashboard') --}}
+{{-- @extends('dashboard.layout.dash') --}}
 
-@section('contact')
-
-  <style>
+@section('content')
+<style>
   body {
     background-color: #f5f9fc;
     color: #1a1a2e;
@@ -37,7 +36,7 @@
 
   .btn-primary {
     background-color: #3b87f1;
-    border-color:  #3b87f1;;
+    border-color:  #3b87f1;
     border-radius: 8px;
   }
 
@@ -57,28 +56,36 @@
     color: #0b2447;
   }
 </style>
+
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Edit Parent</h5>
-            <form method="POST" action="{{ route('users.parents.update', $user->id) }}">
+            <h5 class="card-title fw-semibold mb-4">Add New Manager</h5>
+            <form method="POST" action="{{ route('users.managers.store') }}">
                 @csrf
-                @method('PUT')
                 <div class="mb-3">
                     <label for="name" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
+                    <input type="text" class="form-control" id="name" name="name" required value="{{ old('name') }}">
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Phone Number</label>
-                    <input type="text" class="form-control" id="phone" name="phone" value="{{ $user->phone }}" required>
+                    <input type="text" class="form-control" id="phone" name="phone" required value="{{ old('phone') }}">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
+                    <input type="email" class="form-control" id="email" name="email" required value="{{ old('email') }}">
                 </div>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
-                <a href="{{ route('users.parents') }}" class="btn btn-secondary">Cancel</a>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+
+                <input type="hidden" name="role" value="manager">
+
+                <button type="submit" class="btn btn-primary">Add Manager</button>
+                <a href="{{ route('users.managers') }}" class="btn btn-secondary">Cancel</a>
             </form>
         </div>
     </div>
 </div>
+

@@ -36,18 +36,21 @@
             </ul>
             <div class="mb-3">
     <div class="mb-3">
-    @if($school->ratings_count > 0)
-        @for($i = 1; $i <= 5; $i++)
-            @if($i <= round($school->average_rating))
-                <i class="ti-star text-warning"></i>
-            @else
-                <i class="ti-star text-secondary"></i>
-            @endif
-        @endfor
-        <span class="ml-2">{{ number_format($school->average_rating, 1) }} ({{ $school->ratings_count }} reviews)</span>
-    @else
-        <span class="text-muted">No ratings yet</span>
-    @endif
+@if($school->overall_rating)
+    @for($i = 1; $i <= 5; $i++)
+        @if($i <= round($school->overall_rating))
+            <i class="ti-star text-warning"></i>
+        @else
+            <i class="ti-star text-secondary"></i>
+        @endif
+    @endfor
+    <span class="ml-2">{{ number_format($school->overall_rating, 1) }}</span>
+@else
+    <span class="text-muted">No ratings yet</span>
+@endif
+
+
+
 </div>
               <span class="ml-2">({{ $school->ratings_count }} reviews)</span>
             </div>

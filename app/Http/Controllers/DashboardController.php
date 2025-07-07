@@ -11,24 +11,22 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 { 
-    public function index()
-    {
-        $parents = User::where('role', 'parent')->paginate(10);  
-        $contacts = Contact::latest()->paginate(10);
-        $schools = School::withCount('ratings')
-            ->withAvg('ratings', 'overall_rating')
-            ->orderByDesc('ratings_avg_overall_rating')
-            ->paginate(20);
+   public function index()
+{
+    $parents = User::where('role', 'parent')->paginate(10);
+    $managers = User::where('role', 'manager')->get();
+    $contacts = Contact::paginate(10);
+    $schools = School::paginate(20);
 
-        $topSchools = School::withCount('ratings')
-            ->withAvg('ratings', 'overall_rating')
-            ->having('ratings_count', '>', 0)
-            ->orderByDesc('ratings_avg_overall_rating')
-            ->limit(5)
-            ->get();
+    $topSchools = School::withCount('ratings')
+        ->withAvg('ratings', 'overall_rating')
+        ->having('ratings_count', '>', 0)
+        ->orderByDesc('ratings_avg_overall_rating')
+        ->limit(5)
+        ->get();
 
-        return view('dashboard.layout.dash', compact('parents', 'contacts', 'schools', 'topSchools'));
-    }
+    return view('dashboard.layout.dash', compact('parents', 'contacts', 'schools', 'topSchools', 'managers'));
+}
 
     public function store(Request $request)
     {
