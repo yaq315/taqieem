@@ -36,7 +36,7 @@
                                 <th>#</th>
                                 <th>School Name</th>
                                 <th>Rating</th>
-                                <th>Reviews</th>
+                                {{-- <th>Reviews</th> --}}
                             </tr>
                         </thead>
                         <tbody>
